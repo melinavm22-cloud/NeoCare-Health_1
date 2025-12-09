@@ -1,0 +1,12 @@
+# Archivos temporales de Python
+__pycache__/
+*.pyc
+
+# Configuración local de VS Code
+.vscode/
+
+# Variables de entorno (credenciales)
+.env
+
+# Archivos de base de datos locales
+*.db
