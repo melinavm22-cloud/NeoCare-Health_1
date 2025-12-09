@@ -1,12 +1,32 @@
 # Archivos temporales de Python
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
 
-# Configuración local de VS Code
+# Configuración local de VS Code / PyCharm
 .vscode/
+.idea/
 
 # Variables de entorno (credenciales)
 .env
+.env.*
 
 # Archivos de base de datos locales
 *.db
+
+# Llaves y certificados
+*.pem
+*.key
+*.crt
+
+# Archivos de logs
+*.log
+
+# Archivos de compilación
+*.egg-info/
+dist/
+build/
+
+# Configuración de Docker (si usas credenciales en docker-compose)
+docker-compose.override.yml
