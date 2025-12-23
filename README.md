@@ -47,3 +47,5 @@ URL: http://localhost:5173
 - **Frontend:** React + Vite + TypeScript + TailwindCSS
 - **Auth:** JWT
 - **Hosting:** Render (backend) + Vercel (frontend)
+
+
