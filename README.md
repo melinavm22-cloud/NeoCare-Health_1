@@ -55,7 +55,7 @@ El proyecto utiliza una arquitectura tipo monorepo con backend en FastAPI y fron
 
 ---
 
-## 🗂 Backend (FastAPI)
+## Backend (FastAPI)
 
 ### Tecnologías
 - FastAPI
@@ -71,7 +71,7 @@ El proyecto utiliza una arquitectura tipo monorepo con backend en FastAPI y fron
 
 ---
 
-## 📝 Modelo Card
+## Modelo Card
 
 Una tarjeta representa una tarea dentro del tablero Kanban.
 
@@ -91,7 +91,7 @@ Una tarjeta representa una tarea dentro del tablero Kanban.
 
 ---
 
-## 🔗 Endpoints — Cards
+## Endpoints - Cards
 
 ### Crear tarjeta
 ## POST/CARDS
