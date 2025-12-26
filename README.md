@@ -170,28 +170,99 @@ Manejo de errores de la API
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 - **Auth:** JWT
 - **Hosting:** Render (backend) + Vercel (frontend)
 
 
+# Semana 4
+
+## Nueva tabla worklogs
+
+|  Campo     |     Tipo	     |          Descripción         |
+|   id	     |  SERIAL PK	   |  Identificador del worklog   |
+| card_id	   |  INTEGER FK	 |  Tarjeta asociada            |
+| user_id	   |  INTEGER FK	 |  Usuario autor del registro  |
+| date		   |  DATE		     |  Fecha del registro          |
+| hours		   |  FLOAT		     |  Horas dedicadas (> 0)       |
+| note		   |  VARCHAR(200) |  Nota opcional               |
+| created_at |  TIMESTAMP	   |  Fecha de creación           |
+| updated_at |  TIMESTAMP	   |  Fecha de actualización      |
+
+
+
+## Endpoints creados
+
+### Proceso worlogs para crear
+POST /cards/{card_id}/worklogs
+
+### Para listar worklogs por tarjeta
+GET /cards/{card_id}/worklogs
+
+### Para editar worklog propio
+PATCH /worklogs/{id}
+
+### Para eliminar worklog propio
+DELETE /worklogs/{id}
+
+### Para obtener worklogs semanales del usuario autenticado
+GET /users/me/worklogs?week=YYYY-WW
+
+
+## Validaciones de cliente + servidor
+
+### Backend
+hours > 0 (mínimo recomendado: 0.25)
+date válida y no futura
+note ≤ 200 caracteres
+Solo el autor puede editar o eliminar su worklog
+JWT obligatorio
+Acceso restringido a tarjetas del equipo
+
+### Frontend
+Validar horas > 0
+Validar fecha válida
+Validar longitud de nota
+Mostrar errores del servidor
+Refrescar la tarjeta tras crear/editar/eliminar
+
+
+## Ejemplos de payload
+
+### Para Crear worklog
+{
+  "date": "2025-01-20",
+  "hours": 2.5,
+  "note": "Revisión de endpoints"
+}
+
+### Para editar worklog
+{
+  "hours": 3,
+  "note": "Ajuste tras pruebas"
+}
+
+### Para respuesta de listado por tarjeta
+[
+  {
+    "id": 18,
+    "card_id": 42,
+    "user_id": 7,
+    "date": "2025-01-20",
+    "hours": 2.5,
+    "note": "Revisión de endpoints",
+    "created_at": "2025-01-20T10:15:00",
+    "updated_at": "2025-01-20T10:15:00"
+  }
+]
+
+### Para respuesta semanal (usuario actual)
+{
+  "week": "2025-04",
+  "total_week_hours": 12.5,
+  "daily_totals": {
+    "2025-01-20": 4.0,
+    "2025-01-21": 3.5,
+    "2025-01-22": 5.0
+  },
+  "worklogs": [...]
+}
