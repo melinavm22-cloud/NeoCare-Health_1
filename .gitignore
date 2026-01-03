@@ -30,3 +30,6 @@ build/
 
 # Configuración de Docker (si usas credenciales en docker-compose)
 docker-compose.override.yml
+
+# Documentación de Claude Code
+CLAUDE.md
