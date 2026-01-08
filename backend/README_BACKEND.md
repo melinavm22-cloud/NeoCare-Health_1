@@ -7,7 +7,9 @@ Backend seguro para aplicación Kanban con autenticación JWT, control de acceso
 - **Autenticación JWT** con tokens de acceso y refresh
 - **Hashing seguro** con bcrypt
 - **Control de acceso** basado en ownership de recursos
-- **CRUD completo** para Boards, Lists y Cards
+- **CRUD completo** para Boards, Lists, Cards y Worklogs
+- **Registro de horas** (worklogs) con validaciones de fecha y horas
+- **Reportes semanales** con consultas SQL optimizadas y agregaciones
 - **Logging estructurado** y auditoría de eventos
 - **Health checks** y métricas
 - **CORS configurado** para integración con frontend
@@ -104,6 +106,18 @@ Una vez iniciado el servidor, accede a:
 - `PUT /cards/{id}` - Actualizar tarjeta
 - `DELETE /cards/{id}` - Eliminar tarjeta
 
+### Worklogs
+- `POST /cards/{card_id}/worklogs` - Crear registro de horas
+- `GET /cards/{card_id}/worklogs` - Listar worklogs de una tarjeta
+- `PATCH /worklogs/{id}` - Actualizar worklog propio
+- `DELETE /worklogs/{id}` - Eliminar worklog propio
+- `GET /users/me/worklogs?week=YYYY-WW` - Obtener worklogs semanales del usuario
+
+### Reports (Reportes Semanales)
+- `GET /report/{board_id}/summary?week=YYYY-WW` - Resumen de tarjetas (completadas, vencidas, nuevas)
+- `GET /report/{board_id}/hours-by-user?week=YYYY-WW` - Horas trabajadas por usuario
+- `GET /report/{board_id}/hours-by-card?week=YYYY-WW` - Horas trabajadas por tarjeta
+
 ### Health
 - `GET /health/` - Health check público
 - `GET /health/db` - Health check de base de datos
@@ -188,15 +202,22 @@ backend/
 │   ├── user.py
 │   ├── board.py
 │   ├── list.py
-│   └── card.py
+│   ├── card.py
+│   └── worklog.py        # Modelo de registros de horas
 ├── routers/
 │   ├── auth.py           # Autenticación
 │   ├── boards.py         # CRUD boards
 │   ├── lists.py          # CRUD lists
 │   ├── cards.py          # CRUD cards
+│   ├── worklogs.py       # CRUD worklogs
+│   ├── reports.py        # Reportes semanales
 │   └── health.py         # Health checks
 ├── schemas/
-│   └── card.py           # Schemas Pydantic
+│   ├── card.py           # Schemas Pydantic para cards
+│   ├── worklog.py        # Schemas para worklogs
+│   └── report.py         # Schemas para reportes
+├── alembic/              # Migraciones de base de datos
+│   └── versions/
 └── main.py               # Aplicación FastAPI
 ```
 
