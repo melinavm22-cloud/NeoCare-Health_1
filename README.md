@@ -266,3 +266,114 @@ Refrescar la tarjeta tras crear/editar/eliminar
   },
   "worklogs": [...]
 }
+
+---
+
+## Sistema de Reportes
+
+### Endpoints de reportes semanales
+
+Los reportes permiten obtener estadísticas agregadas de un tablero para una semana específica.
+
+#### 1. Resumen semanal de tarjetas
+```
+GET /report/{board_id}/summary?week=YYYY-WW
+```
+
+**Descripción:** Retorna un resumen de tarjetas completadas, vencidas y nuevas en la semana.
+
+**Parámetros:**
+- `board_id` (path): ID del tablero
+- `week` (query, opcional): Semana en formato ISO (YYYY-WW). Por defecto: semana actual
+
+**Autenticación:** JWT requerido (usuario debe ser dueño del tablero)
+
+**Respuesta:**
+```json
+{
+  "week": "2026-02",
+  "completed": 2,
+  "overdue": 1,
+  "new": 0
+}
+```
+
+#### 2. Horas por usuario
+```
+GET /report/{board_id}/hours-by-user?week=YYYY-WW
+```
+
+**Descripción:** Retorna las horas trabajadas por cada usuario en el tablero durante la semana.
+
+**Parámetros:**
+- `board_id` (path): ID del tablero
+- `week` (query, opcional): Semana en formato ISO (YYYY-WW)
+
+**Autenticación:** JWT requerido
+
+**Respuesta:**
+```json
+{
+  "week": "2026-02",
+  "users": [
+    {
+      "user_id": 1,
+      "username": "testuser",
+      "total_hours": 10.0,
+      "tasks_count": 3
+    }
+  ]
+}
+```
+
+#### 3. Horas por tarjeta
+```
+GET /report/{board_id}/hours-by-card?week=YYYY-WW
+```
+
+**Descripción:** Retorna las horas trabajadas en cada tarjeta del tablero durante la semana.
+
+**Parámetros:**
+- `board_id` (path): ID del tablero
+- `week` (query, opcional): Semana en formato ISO (YYYY-WW)
+
+**Autenticación:** JWT requerido
+
+**Respuesta:**
+```json
+{
+  "week": "2026-02",
+  "cards": [
+    {
+      "card_id": 1,
+      "title": "Card 1",
+      "total_hours": 4.5,
+      "responsible": null,
+      "estado": "todo"
+    },
+    {
+      "card_id": 2,
+      "title": "Card 2",
+      "total_hours": 3.0,
+      "responsible": null,
+      "estado": "done"
+    }
+  ]
+}
+```
+
+### Validaciones de reportes
+
+- Formato de semana debe ser YYYY-WW (ISO 8601)
+- Usuario debe ser dueño del tablero
+- JWT obligatorio
+- Si no se especifica semana, se usa la semana actual (lunes-domingo)
+- Retorna arrays vacíos si no hay datos
+
+### Optimizaciones
+
+Los endpoints de reportes utilizan consultas SQL optimizadas con:
+- Agregaciones GROUP BY
+- SUM y COUNT para cálculos
+- Joins eficientes entre worklogs, cards, lists y boards
+- Filtrado por rango de fechas (lunes-domingo)
