@@ -30,5 +30,8 @@ RUN mkdir -p logs
 # Exponer puerto (Railway usa $PORT dinámicamente)
 EXPOSE 8000
 
-# Script de inicio simple con Uvicorn
-CMD uvicorn backend.main:app --host 0.0.0.0 --port ${PORT:-8000}
+# Copiar y usar script de inicio
+COPY start.sh .
+RUN chmod +x start.sh
+
+CMD ["./start.sh"]
