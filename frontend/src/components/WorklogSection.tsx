@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Clock, Plus, Edit2, Trash2, Loader2, AlertCircle, Save, X as XIcon } from 'lucide-react';
+import { Clock, Plus, Edit2, Trash2, Loader2, AlertCircle, Save } from 'lucide-react';
 import type { Worklog, CreateWorklogRequest, UpdateWorklogRequest } from '../types/worklog';
 import { getCardWorklogs, createWorklog, updateWorklog, deleteWorklog } from '../api/worklogs';
 
