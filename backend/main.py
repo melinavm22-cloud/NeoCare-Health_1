@@ -1,9 +1,9 @@
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from .routers import auth, boards, cards, lists, health, worklogs, reports
-from backend.core.config import Base, engine, CORS_ORIGINS
-from backend.models import user, board, list, card, worklog
-from backend.core.logging_config import setup_logging
+from .core.config import Base, engine, CORS_ORIGINS
+from .models import user, board, list, card, worklog
+from .core.logging_config import setup_logging
 import logging
 import time
 import os
