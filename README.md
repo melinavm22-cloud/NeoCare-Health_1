@@ -592,9 +592,9 @@ Este es un proyecto privado desarrollado para uso interno del departamento de In
 **Desarrollado durante el programa de prácticas profesionales**
 
 - **Documentación y DevOps:** Pablo Techera
-- **Backend:** Equipo de desarrollo
-- **Frontend:** Equipo de desarrollo
-- **Testing:** Equipo QA
+- **Backend:** Melina Vaccaro Martella
+- **Frontend:** Melina Vaccaro Martella
+- **Testing:** Melina Vaccaro Martella
 
 ---
 
