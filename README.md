@@ -186,8 +186,8 @@ cd ..
 uvicorn backend.main:app --reload --host 0.0.0.0 --port 8000
 ```
 
-**Backend disponible en:** http://localhost:8000  
-**Documentación API:** http://localhost:8000/docs
+**Backend disponible en:** [https://neocare-health-1.onrender.com/]
+**Documentación API:** [https://neocare-health-1.onrender.com/docs]
 
 ### 3️⃣ Configurar Frontend
 
@@ -202,7 +202,7 @@ npm install
 npm run dev
 ```
 
-**Frontend disponible en:** http://localhost:5173
+**Frontend disponible en:** [https://neocarehealth1.vercel.app/]
 
 ### ⚡ Usar Makefile (Alternativa)
 
@@ -272,8 +272,8 @@ ENVIRONMENT=development
 ### 📖 Swagger UI
 
 La documentación interactiva de la API está disponible en:
-- **Swagger UI:** http://localhost:8000/docs
-- **ReDoc:** http://localhost:8000/redoc
+- **Swagger UI:** [https://neocare-health-1.onrender.com/docs]
+- **ReDoc:** [https://neocare-health-1.onrender.com/redoc]
 
 ---
 
@@ -284,9 +284,9 @@ La documentación interactiva de la API está disponible en:
 #### Autenticación
 | Método | Endpoint | Descripción | Auth |
 |--------|----------|-------------|------|
-| POST | `/auth/register` | Registrar nuevo usuario | ❌ |
-| POST | `/auth/login` | Login y obtener tokens | ❌ |
-| POST | `/auth/refresh` | Renovar access token | ❌ |
+| POST | `/auth/register` | Registrar nuevo usuario | ✅ |
+| POST | `/auth/login` | Login y obtener tokens | ✅ |
+| POST | `/auth/refresh` | Renovar access token | ✅ |
 | POST | `/auth/logout` | Logout del usuario | ✅ |
 | GET | `/auth/me` | Obtener usuario actual | ✅ |
 
@@ -334,8 +334,8 @@ La documentación interactiva de la API está disponible en:
 #### Health
 | Método | Endpoint | Descripción | Auth |
 |--------|----------|-------------|------|
-| GET | `/health/` | Health check público | ❌ |
-| GET | `/health/db` | Health check base de datos | ❌ |
+| GET | `/health/` | Health check público | ✅ |
+| GET | `/health/db` | Health check base de datos | ✅ |
 | GET | `/health/metrics` | Métricas del sistema | ✅ |
 
 ### Ejemplo de Uso
