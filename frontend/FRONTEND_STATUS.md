@@ -49,22 +49,11 @@ Frontend completo para la aplicación NeoCare, implementado con React + Vite + T
 ##  Credenciales de Prueba
 
 ```
-URL: http://localhost:5173
+URL: https://neocarehealth1.vercel.app/
 Email: admin@neocare.com
-Password: admin123
+Password: R7M2K9T4B8Q1
 ```
-
----
-
-##  Cómo Ejecutar
-
-```bash
-cd ~/neocare-frontend
-npm install
-npm run dev
-```
-
-El frontend estará disponible en `http://localhost:5173`
+El frontend estará disponible en `[https://neocarehealth1.vercel.app/]`
 
 ---
 
@@ -148,17 +137,6 @@ class Card(Base):
     list_id = Column(Integer, ForeignKey("lists.id"))
     board_id = Column(Integer, ForeignKey("boards.id"))
 ```
-
-### 5. Activar conexión real
-
-Cuando el backend esté listo, cambiar `USE_MOCK = false` en:
-- `src/api/auth.ts`
-- `src/api/boards.ts`
-- `src/api/lists.ts`
-- `src/api/cards.ts`
-
----
-
 ##  Tecnologías
 
 - React 19
